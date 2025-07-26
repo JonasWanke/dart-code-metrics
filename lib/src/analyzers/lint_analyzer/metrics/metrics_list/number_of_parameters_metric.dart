@@ -51,8 +51,7 @@ class NumberOfParametersMetric extends FunctionMetric<int> {
 
       return node.name.lexeme != 'copyWith' ||
           className == null ||
-          className !=
-              node.returnType?.type?.getDisplayString(withNullability: true);
+          className != node.returnType?.type?.getDisplayString();
     }
 
     return false;

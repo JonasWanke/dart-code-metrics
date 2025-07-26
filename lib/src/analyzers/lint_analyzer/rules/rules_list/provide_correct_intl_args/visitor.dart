@@ -172,7 +172,7 @@ class _Visitor extends IntlBaseVisitor {
 
     addIssues(checkedItems
         .where((arg) => !argsNames.contains(arg?.lexeme))
-        .whereNotNull()
+        .nonNulls
         .map(issueFactory));
   }
 }

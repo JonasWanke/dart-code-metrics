@@ -37,7 +37,7 @@ class _FieldMemberGroup extends _MemberGroup {
   factory _FieldMemberGroup.parse(FieldDeclaration declaration) {
     final annotation = declaration.metadata
         .map((metadata) => _Annotation.parse(metadata.name.name))
-        .whereNotNull()
+        .nonNulls
         .firstOrNull;
     final modifier =
         Identifier.isPrivateName(declaration.fields.variables.first.name.lexeme)
@@ -114,7 +114,7 @@ class _MethodMemberGroup extends _MemberGroup {
     final methodName = declaration.name.lexeme;
     final annotation = declaration.metadata
         .map((metadata) => _Annotation.parse(metadata.name.name))
-        .whereNotNull()
+        .nonNulls
         .firstOrNull;
     final modifier = Identifier.isPrivateName(methodName)
         ? _Modifier.private
@@ -164,7 +164,7 @@ class _ConstructorMemberGroup extends _MemberGroup {
   factory _ConstructorMemberGroup.parse(ConstructorDeclaration declaration) {
     final annotation = declaration.metadata
         .map((metadata) => _Annotation.parse(metadata.name.name))
-        .whereNotNull()
+        .nonNulls
         .firstOrNull;
     final name = declaration.name;
     final isFactory = declaration.factoryKeyword != null;
@@ -218,7 +218,7 @@ class _GetSetMemberGroup extends _MemberGroup {
   factory _GetSetMemberGroup.parse(MethodDeclaration declaration) {
     final annotation = declaration.metadata
         .map((metadata) => _Annotation.parse(metadata.name.name))
-        .whereNotNull()
+        .nonNulls
         .firstOrNull;
     final type = declaration.isGetter ? _MemberType.getter : _MemberType.setter;
     final modifier = Identifier.isPrivateName(declaration.name.lexeme)

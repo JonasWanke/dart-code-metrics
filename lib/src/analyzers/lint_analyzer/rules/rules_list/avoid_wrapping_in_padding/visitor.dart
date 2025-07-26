@@ -23,8 +23,7 @@ class _Visitor extends RecursiveAstVisitor<void> {
       final expression = child.expression;
 
       return expression is InstanceCreationExpression &&
-          expression.staticType?.getDisplayString(withNullability: false) ==
-              'Container';
+          expression.staticType?.getDisplayString() == 'Container';
     }
 
     return false;

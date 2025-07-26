@@ -174,9 +174,7 @@ class _Visitor extends RecursiveAstVisitor<void> {
   }
 
   bool _isRootWidget(DartType? type, DartType? rootType) =>
-      type != null &&
-      type.getDisplayString(withNullability: false) ==
-          rootType?.getDisplayString(withNullability: false);
+      type != null && type.getDisplayString() == rootType?.getDisplayString();
 }
 
 class _ListenableVisitor extends RecursiveAstVisitor<void> {

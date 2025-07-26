@@ -92,13 +92,13 @@ class UnusedL10nVisitor extends RecursiveAstVisitor<void> {
       target is SimpleIdentifier &&
       (_classPattern.hasMatch(target.name) ||
           _classPattern.hasMatch(
-            target.staticType?.getDisplayString(withNullability: false) ?? '',
+            target.staticType?.getDisplayString() ?? '',
           ));
 
   bool _matchConstructorOf(Expression? target) =>
       target is InstanceCreationExpression &&
       _classPattern.hasMatch(
-        target.staticType?.getDisplayString(withNullability: false) ?? '',
+        target.staticType?.getDisplayString() ?? '',
       ) &&
       target.constructorName.name?.name == 'of';
 
@@ -112,7 +112,7 @@ class UnusedL10nVisitor extends RecursiveAstVisitor<void> {
   bool _matchStaticGetter(Expression? target) =>
       target is PrefixedIdentifier &&
       _classPattern.hasMatch(
-        target.staticType?.getDisplayString(withNullability: false) ?? '',
+        target.staticType?.getDisplayString() ?? '',
       );
 
   void _addMemberInvocation(SimpleIdentifier target, String name) {

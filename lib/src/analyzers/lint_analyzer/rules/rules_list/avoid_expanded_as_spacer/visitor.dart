@@ -15,7 +15,7 @@ class _Visitor extends RecursiveAstVisitor<void> {
 
     final arguments = expression.argumentList.arguments;
     final isExpanded = expression.staticType?.getDisplayString(
-          withNullability: true,
+          ,
         ) ==
         _expandedClassName;
 
@@ -25,7 +25,7 @@ class _Visitor extends RecursiveAstVisitor<void> {
       final expandedChild = arguments.first as NamedExpression;
 
       final childName = expandedChild.staticType?.getDisplayString(
-        withNullability: true,
+        ,
       );
 
       final child = expandedChild.expression;

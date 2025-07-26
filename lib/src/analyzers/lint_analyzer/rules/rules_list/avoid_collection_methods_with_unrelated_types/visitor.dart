@@ -111,7 +111,7 @@ class _Visitor extends RecursiveAstVisitor<void> {
               ? _TypedClassElement(typeArg, element)
               : null;
         })
-        .whereNotNull()
+        .nonNulls
         .toList();
     if (typeArgElements.length < type.typeArguments.length) {
       return null;

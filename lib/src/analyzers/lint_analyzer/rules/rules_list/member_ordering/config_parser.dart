@@ -42,7 +42,7 @@ class _ConfigParser {
         ? List<String>.from(config[_orderConfig] as Iterable)
         : _defaultOrderList;
 
-    return order.map(_parseGroup).whereNotNull().toList();
+    return order.map(_parseGroup).nonNulls.toList();
   }
 
   static List<_MemberGroup> parseWidgetsOrder(Map<String, Object> config) {
@@ -50,7 +50,7 @@ class _ConfigParser {
         ? List<String>.from(config[_widgetsOrderConfig] as Iterable)
         : _defaultWidgetsOrderList;
 
-    return widgetsOrder.map(_parseGroup).whereNotNull().toList();
+    return widgetsOrder.map(_parseGroup).nonNulls.toList();
   }
 
   static bool parseAlphabetize(Map<String, Object> config) =>

@@ -13,7 +13,7 @@ class _ConfigParser {
         : order
             .map((group) => group.snakeCaseToKebab())
             .map(_ArgumentGroup.parseGroupName)
-            .whereNotNull()
+            .nonNulls
             .toList();
   }
 }
