@@ -1130,7 +1130,7 @@ extension ElementExtension on Element {
     final self = this;
 
     if (self is PropertyAccessorElement) {
-      final enclosingElement = self.enclosingElement;
+      final enclosingElement = self.enclosingElement3;
       if (enclosingElement is InterfaceElement &&
           Flutter.isState(enclosingElement)) {
         // The BuildContext object is the field on Flutter's State class.
@@ -1228,7 +1228,7 @@ extension ExpressionExtension on Expression {
     }
 
     // Ensure that dependencies (e.g. default parameter values) are computed.
-    final implElement = element.declaration as ConstructorElementImpl;
+    final implElement = element.declaration;
     // ignore: cascade_invocations
     implElement.computeConstantDependencies();
 

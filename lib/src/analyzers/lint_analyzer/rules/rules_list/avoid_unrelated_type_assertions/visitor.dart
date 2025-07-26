@@ -29,7 +29,7 @@ class _Visitor extends RecursiveAstVisitor<void> {
       return false;
     }
 
-    if (objectType.isDynamic || castedType.isDynamic) {
+    if (objectType is DynamicType || castedType is DynamicType) {
       return false;
     }
 
@@ -68,23 +68,23 @@ class _Visitor extends RecursiveAstVisitor<void> {
             ? objectType.typeArguments.first
             : objectType;
 
-    if ((correctObjectType.element2 == castedType.element2) ||
-        castedType.isDynamic ||
-        correctObjectType.isDynamic ||
+    if ((correctObjectType.element == castedType.element) ||
+        castedType is DynamicType ||
+        correctObjectType is DynamicType ||
         _isObjectAndEnum(correctObjectType, castedType)) {
       return correctObjectType;
     }
 
     if (correctObjectType is InterfaceType) {
       return correctObjectType.allSupertypes
-          .firstWhereOrNull((value) => value.element2 == castedType.element2);
+          .firstWhereOrNull((value) => value.element == castedType.element);
     }
 
     return null;
   }
 
   bool _checkGenerics(DartType objectType, DartType castedType) {
-    if (objectType.isDynamic || castedType.isDynamic) {
+    if (objectType is DynamicType || castedType is DynamicType) {
       return false;
     }
 
@@ -115,5 +115,5 @@ class _Visitor extends RecursiveAstVisitor<void> {
 
   bool _isObjectAndEnum(DartType objectType, DartType castedType) =>
       objectType.isDartCoreObject &&
-      castedType.element2?.kind == ElementKind.ENUM;
+      castedType.element?.kind == ElementKind.ENUM;
 }

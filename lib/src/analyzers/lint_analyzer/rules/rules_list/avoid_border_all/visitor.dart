@@ -27,8 +27,12 @@ class _Visitor extends RecursiveAstVisitor<void> {
           isAllConst = false;
         } else if (arg is SimpleIdentifier) {
           final element = arg.staticElement;
-          if (element is PropertyAccessorElement && !element.variable.isConst) {
-            isAllConst = false;
+          if (element is PropertyAccessorElement) {
+            final declaration = element.declaration;
+            if (declaration is VariableElement &&
+                !(declaration as VariableElement).isConst) {
+              isAllConst = false;
+            }
           } else if (element is VariableElement && !element.isConst) {
             isAllConst = false;
           }

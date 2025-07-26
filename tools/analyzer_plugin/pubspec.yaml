@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   dart_code_metrics:
+    # path: /home/user/GitHub/JonasWanke/dart-code-metrics/
     git:
       url: https://github.com/JonasWanke/dart-code-metrics.git
       ref: b2109f55f829528df450f01b3b84aa3d0b8add25

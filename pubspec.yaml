@@ -8,8 +8,8 @@ environment:
   sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
-  analyzer: ^6.5.0
-  analyzer_plugin: ^0.11.0
+  analyzer: ^7.0.0
+  analyzer_plugin: ^0.13.4
   ansicolor: ^2.0.1
   args: ^2.0.0
   collection: ^1.16.0

@@ -107,7 +107,7 @@ class UnusedL10nVisitor extends RecursiveAstVisitor<void> {
 
   bool _matchExtension(Expression? target) =>
       target is PrefixedIdentifier &&
-      target.staticElement?.enclosingElement is ExtensionElement;
+      target.staticElement?.enclosingElement3 is ExtensionElement;
 
   bool _matchStaticGetter(Expression? target) =>
       target is PrefixedIdentifier &&
@@ -120,7 +120,7 @@ class UnusedL10nVisitor extends RecursiveAstVisitor<void> {
 
     if (staticElement is VariableElement) {
       // ignore: deprecated_member_use
-      final classElement = staticElement.type.element2;
+      final classElement = staticElement.type.element;
       if (_classPattern.hasMatch(classElement?.name ?? '')) {
         _tryAddInvocation(classElement, name);
       }
@@ -128,7 +128,7 @@ class UnusedL10nVisitor extends RecursiveAstVisitor<void> {
       return;
     } else if (staticElement is PropertyAccessorElement) {
       // ignore: deprecated_member_use
-      final classElement = staticElement.type.returnType.element2;
+      final classElement = staticElement.type.returnType.element;
       if (_classPattern.hasMatch(classElement?.name ?? '')) {
         _tryAddInvocation(classElement, name);
       }
@@ -144,19 +144,19 @@ class UnusedL10nVisitor extends RecursiveAstVisitor<void> {
     String name,
   ) {
     final staticElement =
-        target.constructorName.staticElement?.enclosingElement;
+        target.constructorName.staticElement?.enclosingElement3;
 
     _tryAddInvocation(staticElement, name);
   }
 
   void _addMemberInvocationOnAccessor(SimpleIdentifier target, String name) {
     final staticElement =
-        target.staticElement?.enclosingElement as ExtensionElement;
+        target.staticElement?.enclosingElement3 as ExtensionElement;
 
     for (final element in staticElement.accessors) {
       if (_classPattern.hasMatch(element.returnType.toString())) {
         // ignore: deprecated_member_use
-        final declaredElement = element.returnType.element2;
+        final declaredElement = element.returnType.element;
 
         _tryAddInvocation(declaredElement, name);
         break;

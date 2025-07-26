@@ -23,13 +23,11 @@ class _Visitor extends RecursiveAstVisitor<void> {
   void visitComment(Comment node) {
     super.visitComment(node);
 
-    if (node.isDocumentation) {
-      final isValid = node.tokens.length == 1
-          ? _hasValidSingleLine(node.tokens.first, _CommentType.doc)
-          : _hasValidMultiline(node.tokens, _CommentType.doc);
-      if (!isValid) {
-        _comments.add(_DocCommentInfo(node));
-      }
+    final isValid = node.tokens.length == 1
+        ? _hasValidSingleLine(node.tokens.first, _CommentType.doc)
+        : _hasValidMultiline(node.tokens, _CommentType.doc);
+    if (!isValid) {
+      _comments.add(_DocCommentInfo(node));
     }
   }
 

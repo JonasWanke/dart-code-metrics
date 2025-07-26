@@ -37,8 +37,8 @@ class _AssignmentExpressionVisitor extends RecursiveAstVisitor<void> {
 
     final element = node.writeElement;
     if (element is PropertyAccessorElement &&
-        element.variable.isFinal &&
-        element.variable.isLate) {
+        (element.variable2?.isFinal ?? false) &&
+        (element.variable2?.isLate ?? false)) {
       wrongAssignments.add(node);
     }
   }
